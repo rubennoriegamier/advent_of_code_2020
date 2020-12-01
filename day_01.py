@@ -1,4 +1,5 @@
 import fileinput
+from bisect import bisect_left
 
 
 def main():
@@ -25,11 +26,15 @@ def part_1(entries: list[int]) -> int:
 def part_2(entries: list[int]) -> int:
     entries = sorted(entries)
 
+    while entries[0] + entries[1] + entries[-1] > 2020:
+        del entries[-1]
+
     for a in range(0, len(entries) - 2):
         for b in range(a + 1, len(entries) - 1):
-            for c in range(b + 1, len(entries)):
-                if entries[a] + entries[b] + entries[c] == 2_020:
-                    return entries[a] * entries[b] * entries[c]
+            c = bisect_left(entries, 2_020 - entries[a] - entries[b], b + 1, len(entries) - 1)
+
+            if entries[a] + entries[b] + entries[c] == 2_020:
+                return entries[a] * entries[b] * entries[c]
 
 
 if __name__ == '__main__':
