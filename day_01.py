@@ -23,8 +23,6 @@ def part_1(entries: list[int]) -> int:
 
 
 def part_2(entries: list[int]) -> int:
-    entries = sorted(entries)
-
     for a in range(0, len(entries) - 2):
         for b in range(a + 1, len(entries) - 1):
             for c in range(b + 1, len(entries)):
