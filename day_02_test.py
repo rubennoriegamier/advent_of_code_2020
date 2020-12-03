@@ -12,18 +12,18 @@ class TestDay02(unittest.TestCase):
             PolicyAndPassword.parse('1-3 a:abcde')
 
     def test_valid_1(self):
-        self.assertTrue('1-3 a: abcde')
-        self.assertTrue('2-9 c: ccccccccc')
+        self.assertTrue(PolicyAndPassword.parse('1-3 a: abcde').is_valid_1())
+        self.assertTrue(PolicyAndPassword.parse('2-9 c: ccccccccc').is_valid_1())
 
     def test_invalid_1(self):
-        self.assertTrue('1-3 b: cdefg')
+        self.assertFalse(PolicyAndPassword.parse('1-3 b: cdefg').is_valid_1())
 
     def test_valid_2(self):
-        self.assertTrue('1-3 a: abcde')
+        self.assertTrue(PolicyAndPassword.parse('1-3 a: abcde').is_valid_2())
 
     def test_invalid_2(self):
-        self.assertTrue('1-3 b: cdefg')
-        self.assertTrue('2-9 c: ccccccccc')
+        self.assertFalse(PolicyAndPassword.parse('1-3 b: cdefg').is_valid_2())
+        self.assertFalse(PolicyAndPassword.parse('2-9 c: ccccccccc').is_valid_2())
 
 
 if __name__ == '__main__':
