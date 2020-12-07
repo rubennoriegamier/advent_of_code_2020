@@ -1,6 +1,5 @@
 import re
 from functools import partial
-from operator import methodcaller
 from os import linesep
 from sys import stdin
 
@@ -37,11 +36,11 @@ def parse_passports(raw_passports: str) -> list[dict[str, str]]:
     passports = raw_passports.split(linesep * 2)
 
     # ['ecl:amb', 'byr:1943', 'iyr:2014', 'eyr:2028', 'pid:333051831']
-    passports = map(re.compile('[ \n]').split, passports)
+    passports = map(re.compile('\\s').split, passports)
 
     # {'ecl': 'amb', 'byr': '1943', 'iyr': '2014', 'eyr': '2028', 'pid': '333051831'}
     # noinspection PyTypeChecker
-    return list(map(dict, map(partial(map, methodcaller('split', ':')), passports)))
+    return list(map(dict, map(partial(map, partial(str.split, sep=':')), passports)))
 
 
 if __name__ == '__main__':

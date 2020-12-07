@@ -13,21 +13,16 @@ class TestDay04(unittest.TestCase):
             self.assertIsNotNone(HEIGHT_RE.fullmatch(f'{inches}in'))
 
     def test_invalid_height_re(self):
-        self.assertIsNone(HEIGHT_RE.fullmatch('149cm'))
-        self.assertIsNone(HEIGHT_RE.fullmatch('194cm'))
-        self.assertIsNone(HEIGHT_RE.fullmatch('170'))
-        self.assertIsNone(HEIGHT_RE.fullmatch('58in'))
-        self.assertIsNone(HEIGHT_RE.fullmatch('77in'))
-        self.assertIsNone(HEIGHT_RE.fullmatch('65'))
+        for height in ('149cm', '194cm', '170', '58in', '77in', '65'):
+            self.assertIsNone(HEIGHT_RE.fullmatch(height))
 
     def test_hair_color_re(self):
         for _ in range(100):
             self.assertIsNotNone(HAIR_COLOR_RE.fullmatch(f'#{token_hex(3)}'))
 
     def test_invalid_hair_color_re(self):
-        self.assertIsNone(HAIR_COLOR_RE.fullmatch('#123abz'))
-        self.assertIsNone(HAIR_COLOR_RE.fullmatch('123abc'))
-        self.assertIsNone(HAIR_COLOR_RE.fullmatch(f'#{token_hex(4)}'))
+        for hair_color in ('#123abz', '123abc', f'#{token_hex(4)}'):
+            self.assertIsNone(HAIR_COLOR_RE.fullmatch(hair_color))
 
     def test_eye_color_re(self):
         for eye_color in ('amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'):
@@ -42,9 +37,8 @@ class TestDay04(unittest.TestCase):
             self.assertIsNotNone(PASSPORT_ID_RE.fullmatch(f'{randint(0, 999_999_999):09}'))
 
     def test_invalid_passport_id_re(self):
-        self.assertIsNone(PASSPORT_ID_RE.fullmatch('186cm'))
-        self.assertIsNone(PASSPORT_ID_RE.fullmatch('0123456789'))
-        self.assertIsNone(PASSPORT_ID_RE.fullmatch('3556412378'))
+        for passport_id in ('186cm', '0123456789', '3556412378'):
+            self.assertIsNone(PASSPORT_ID_RE.fullmatch(passport_id))
 
     def test_part_1(self):
         passports = parse_passports('''
