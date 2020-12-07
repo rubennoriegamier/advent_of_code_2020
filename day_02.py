@@ -1,7 +1,6 @@
 import fileinput
 import re
 from collections import Counter
-from operator import methodcaller
 
 
 class PolicyAndPassword:
@@ -33,8 +32,8 @@ class PolicyAndPassword:
 def main():
     policies_with_passwords = list(map(PolicyAndPassword.parse, map(str.strip, fileinput.input())))
 
-    print(sum(map(methodcaller('is_valid_1'), policies_with_passwords)))
-    print(sum(map(methodcaller('is_valid_2'), policies_with_passwords)))
+    print(sum(map(PolicyAndPassword.is_valid_1, policies_with_passwords)))
+    print(sum(map(PolicyAndPassword.is_valid_2, policies_with_passwords)))
 
 
 if __name__ == '__main__':
