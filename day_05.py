@@ -1,4 +1,5 @@
 import fileinput
+from collections.abc import Iterable
 from itertools import islice
 
 
@@ -9,11 +10,11 @@ def main():
     print(part_2(boarding_passes))
 
 
-def part_1(boarding_passes: list[str]) -> int:
+def part_1(boarding_passes: Iterable[str]) -> int:
     return max(map(seat_id, boarding_passes))
 
 
-def part_2(boarding_passes: list[str]) -> int:
+def part_2(boarding_passes: Iterable[str]) -> int:
     seat_ids = sorted(map(seat_id, boarding_passes))
 
     return next(curr_seat_id + 1 for curr_seat_id, next_seat_id in zip(seat_ids, islice(seat_ids, 1, None))
