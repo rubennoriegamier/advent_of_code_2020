@@ -5,8 +5,9 @@ from itertools import islice
 def main():
     data = list(map(int, fileinput.input()))
 
-    print(part_1(data, 25))
-    print(part_2(data, 25))
+    n = part_1(data, 25)
+    print(n)
+    print(part_2(data, n))
 
 
 def part_1(data: list[int], preamble_len: int) -> int:
@@ -24,8 +25,7 @@ def part_1(data: list[int], preamble_len: int) -> int:
             return n
 
 
-def part_2(data: list[int], preamble_len: int) -> int:
-    n = part_1(data, preamble_len)
+def part_2(data: list[int], n: int) -> int:
     i = 0
     j = 1
     s = data[i] + data[j]
