@@ -6,31 +6,31 @@ from operator import sub
 
 
 def main():
-    output_joltages = list(map(int, fileinput.input()))
+    joltages = list(map(int, fileinput.input()))
 
-    print(part_1(output_joltages))
-    print(part_2(output_joltages))
+    print(part_1(joltages))
+    print(part_2(joltages))
 
 
-def part_1(output_joltages: Iterable[int]) -> int:
-    output_joltages = sorted(output_joltages)
-    differences = Counter(map(sub, output_joltages[1:], output_joltages))
-    differences[output_joltages[0]] += 1
+def part_1(joltages: Iterable[int]) -> int:
+    joltages = sorted(joltages)
+    differences = Counter(map(sub, joltages[1:], joltages))
+    differences[joltages[0]] += 1
     differences[3] += 1
 
     return differences[1] * differences[3]
 
 
-def part_2(output_joltages: Iterable[int]) -> int:
-    output_joltages = sorted(output_joltages)
-    output_joltages.insert(0, 0)
+def part_2(joltages: Iterable[int]) -> int:
+    joltages = sorted(joltages)
+    joltages.insert(0, 0)
 
     @lru_cache(maxsize=None)
-    def distinct_arrangements(i: int) -> int:
-        return sum(distinct_arrangements(i + step) for step in (1, 2, 3)
-                   if i + step < len(output_joltages) and output_joltages[i + step] - output_joltages[i] <= 3) or 1
+    def arrangements(i: int) -> int:
+        return sum(arrangements(j) for j in range(i + 1, min(i + 4, len(joltages)))
+                   if joltages[j] - joltages[i] <= 3) or 1
 
-    return distinct_arrangements(0)
+    return arrangements(0)
 
 
 if __name__ == '__main__':
