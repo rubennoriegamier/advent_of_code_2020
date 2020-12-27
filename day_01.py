@@ -1,5 +1,4 @@
 import fileinput
-from collections.abc import Iterable
 
 
 def main():
@@ -9,7 +8,7 @@ def main():
     print(part_2(entries))
 
 
-def part_1(entries: Iterable[int]) -> int:
+def part_1(entries):
     entries = sorted(entries)
 
     while entries[0] + entries[-1] != 2_020:
@@ -21,7 +20,7 @@ def part_1(entries: Iterable[int]) -> int:
     return entries[0] * entries[-1]
 
 
-def part_2(entries: Iterable[int]) -> int:
+def part_2(entries):
     entries = sorted(entries)
 
     while entries[0] + entries[1] + entries[-1] > 2020:

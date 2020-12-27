@@ -10,7 +10,7 @@ def main():
     print(part_2(data, n))
 
 
-def part_1(data: list[int], preamble_len: int) -> int:
+def part_1(data, preamble_len):
     for i, n in enumerate(islice(data, preamble_len, None), preamble_len):
         preamble = data[i - preamble_len:i]
         preamble.sort()
@@ -25,7 +25,7 @@ def part_1(data: list[int], preamble_len: int) -> int:
             return n
 
 
-def part_2(data: list[int], n: int) -> int:
+def part_2(data, n):
     i = 0
     j = 1
     s = data[i] + data[j]

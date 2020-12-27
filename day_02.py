@@ -8,24 +8,24 @@ class PolicyAndPassword:
 
     __slots__ = '_n_1', '_n_2', '_char', '_password'
 
-    def __init__(self, n_1: int, n_2: int, char: str, password: str):
+    def __init__(self, n_1, n_2, char, password):
         self._n_1 = n_1
         self._n_2 = n_2
         self._char = char
         self._password = password
 
     @classmethod
-    def parse(cls, raw_policy_with_password: str) -> 'PolicyAndPassword':
+    def parse(cls, raw_policy_with_password):
         (n_1, n_2, char, password) = cls._PARSE_RE.fullmatch(raw_policy_with_password).groups()
 
         return cls(int(n_1), int(n_2), char, password)
 
-    def is_valid_1(self) -> bool:
+    def is_valid_1(self):
         char_counter = Counter(self._password)
 
         return self._n_1 <= char_counter[self._char] <= self._n_2
 
-    def is_valid_2(self) -> bool:
+    def is_valid_2(self):
         return (self._password[self._n_1 - 1] == self._char) != (self._password[self._n_2 - 1] == self._char)
 
 

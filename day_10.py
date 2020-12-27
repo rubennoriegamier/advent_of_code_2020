@@ -1,6 +1,5 @@
 import fileinput
 from collections import Counter
-from collections.abc import Iterable
 from functools import lru_cache
 from operator import sub
 
@@ -12,7 +11,7 @@ def main():
     print(part_2(joltages))
 
 
-def part_1(joltages: Iterable[int]) -> int:
+def part_1(joltages):
     joltages = sorted(joltages)
     differences = Counter(map(sub, joltages[1:], joltages))
     differences[joltages[0]] += 1
@@ -21,12 +20,12 @@ def part_1(joltages: Iterable[int]) -> int:
     return differences[1] * differences[3]
 
 
-def part_2(joltages: Iterable[int]) -> int:
+def part_2(joltages):
     joltages = sorted(joltages)
     joltages.insert(0, 0)
 
     @lru_cache(maxsize=None)
-    def arrangements(i: int) -> int:
+    def arrangements(i):
         return sum(arrangements(j) for j in range(i + 1, min(i + 4, len(joltages)))
                    if joltages[j] - joltages[i] <= 3) or 1
 

@@ -15,11 +15,11 @@ def main():
     print(part_2(passports))
 
 
-def part_1(passports: list[dict[str, str]]) -> int:
+def part_1(passports):
     return sum(1 for passport in passports if len(passport) == 8 or len(passport) == 7 and 'cid' not in passport)
 
 
-def part_2(passports: list[dict[str, str]]) -> int:
+def part_2(passports):
     return sum(1 for passport in passports if
                (len(passport) == 8 or len(passport) == 7 and 'cid' not in passport) and
                1920 <= int(passport['byr']) <= 2002 and
@@ -30,7 +30,7 @@ def part_2(passports: list[dict[str, str]]) -> int:
                PASSPORT_ID_RE.fullmatch(passport['pid']))
 
 
-def parse_passports(raw_passports: str) -> list[dict[str, str]]:
+def parse_passports(raw_passports):
     # 'ecl:amb byr:1943 iyr:2014 eyr:2028\npid:333051831'
     passports = raw_passports.split('\n\n')
 

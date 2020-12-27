@@ -1,6 +1,5 @@
 import fileinput
 from collections import namedtuple
-from collections.abc import Sequence
 
 Instruction = namedtuple('Instruction', ('operation', 'argument'))
 
@@ -12,13 +11,13 @@ def main():
     print(part_2(instructions))
 
 
-def parse_instruction(raw_instruction: str) -> Instruction:
+def parse_instruction(raw_instruction):
     operation, raw_argument = raw_instruction.split()
 
     return Instruction(operation, int(raw_argument))
 
 
-def part_1(instructions: Sequence[Instruction]) -> int:
+def part_1(instructions):
     acc = 0
     pos = 0
     exe_ins = set()
@@ -38,7 +37,7 @@ def part_1(instructions: Sequence[Instruction]) -> int:
     return acc
 
 
-def part_2(instructions: Sequence[Instruction]) -> int:
+def part_2(instructions):
     acc = [0, None]
     pos = [0]
     exe_ins = [set()]

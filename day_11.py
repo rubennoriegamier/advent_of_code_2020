@@ -12,7 +12,7 @@ def main():
     print(part_2(layout))
 
 
-def part_1(layout: list[str]) -> int:
+def part_1(layout):
     layout = [list(f'.{row}.') for row in layout]
     layout.append(list('.' * len(layout[0])))
     chaos = True
@@ -55,7 +55,7 @@ def part_1(layout: list[str]) -> int:
     return sum(map(partial(eq, '#'), chain.from_iterable(layout)))
 
 
-def part_2(layout: list[str]) -> int:
+def part_2(layout):
     layout = list(map(list, layout))
     chaos = True
     counter = [[0] * len(row) for row in layout]

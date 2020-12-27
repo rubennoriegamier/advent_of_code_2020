@@ -12,7 +12,7 @@ def main():
     print(part_2(rules))
 
 
-def parse_rule(raw_rule: str) -> tuple[str, dict[str, int]]:
+def parse_rule(raw_rule):
     container = ' '.join(raw_rule.split(maxsplit=2)[:2])
     content = {}
 
@@ -23,17 +23,17 @@ def parse_rule(raw_rule: str) -> tuple[str, dict[str, int]]:
     return container, content
 
 
-def part_1(rules: dict[str, dict[str, int]]) -> int:
+def part_1(rules):
     @lru_cache(maxsize=None)
-    def contains_shiny(container_color: str) -> bool:
+    def contains_shiny(container_color):
         return any(True for content_color in rules[container_color]
                    if content_color == 'shiny gold' or contains_shiny(content_color))
 
     return sum(map(contains_shiny, rules))
 
 
-def part_2(rules: dict[str, dict[str, int]]) -> int:
-    def count_bags(container_color: str) -> int:
+def part_2(rules):
+    def count_bags(container_color):
         return sum(content_count + content_count * count_bags(content_color)
                    for content_color, content_count in rules[container_color].items())
 

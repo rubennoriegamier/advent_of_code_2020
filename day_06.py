@@ -1,4 +1,3 @@
-from collections.abc import Iterable
 from functools import reduce
 from sys import stdin
 
@@ -10,24 +9,24 @@ def main():
     print(part_2(groups))
 
 
-def parse_groups(raw_groups: str) -> list[list[str]]:
+def parse_groups(raw_groups):
     return list(map(str.split, raw_groups.split('\n\n')))
 
 
-def anyone_answered_yes_count(group: Iterable[str]) -> int:
+def anyone_answered_yes_count(group):
     return len(set(''.join(group)))
 
 
-def everyone_answered_yes_count(group: Iterable[str]) -> int:
+def everyone_answered_yes_count(group):
     # noinspection PyTypeChecker
     return len(reduce(set.intersection, map(set, group)))
 
 
-def part_1(groups: Iterable[Iterable[str]]) -> int:
+def part_1(groups):
     return sum(map(anyone_answered_yes_count, groups))
 
 
-def part_2(groups: Iterable[Iterable[str]]) -> int:
+def part_2(groups):
     return sum(map(everyone_answered_yes_count, groups))
 
 
