@@ -1,6 +1,5 @@
 from collections.abc import Iterable
 from functools import reduce
-from os import linesep
 from sys import stdin
 
 
@@ -12,7 +11,7 @@ def main():
 
 
 def parse_groups(raw_groups: str) -> list[list[str]]:
-    return list(map(str.split, raw_groups.split(linesep * 2)))
+    return list(map(str.split, raw_groups.split('\n\n')))
 
 
 def anyone_answered_yes_count(group: Iterable[str]) -> int:

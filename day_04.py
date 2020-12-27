@@ -1,6 +1,5 @@
 import re
 from functools import partial
-from os import linesep
 from sys import stdin
 
 HEIGHT_RE = re.compile('1(?:[5-8]\\d|9[0-3])cm|(?:59|6\\d|7[0-6])in')
@@ -33,7 +32,7 @@ def part_2(passports: list[dict[str, str]]) -> int:
 
 def parse_passports(raw_passports: str) -> list[dict[str, str]]:
     # 'ecl:amb byr:1943 iyr:2014 eyr:2028\npid:333051831'
-    passports = raw_passports.split(linesep * 2)
+    passports = raw_passports.split('\n\n')
 
     # ['ecl:amb', 'byr:1943', 'iyr:2014', 'eyr:2028', 'pid:333051831']
     passports = map(re.compile('\\s').split, passports)
